@@ -290,7 +290,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /E /I /Y &quot;$(ProjectDir)HiEndsExplorer&quot; &quot;$(ProjectDir)$(OutDir)HiEndsExplorer&quot;" ContinueOnError="true"/>
+    <Exec Command="xcopy /E /I /Y &quot;$(ProjectDir)HiEndsExplorer&quot; &quot;$(ProjectDir)$(OutDir)HiEndsExplorer&quot;" ContinueOnError="true" />
   </Target>
 
 </Project>
