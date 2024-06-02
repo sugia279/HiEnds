@@ -1,0 +1,8 @@
+BrowseType: File:Csv|*.csv
+Type: Csv
+DataDriver: HiEndsExtractor.DataDriver.dll
+FilterConditions: {}
+LoadedAttributes:
+- HasHeader
+AttributeNotExistString: '[[NotExist]]'
+NullValueString: '[[null]]'

@@ -1,0 +1,10 @@
+---
+BrowseType: File:Xml|*.xml
+Type: Xml
+DataDriver: HiEndsExtractor.DataDriver.dll
+FilterConditions:  
+  QueryCommand:    
+LoadedAttributes:
+Remap:  
+AttributeNotExistString: "[[NotExist]]"
+NullValueString: "[[null]]"

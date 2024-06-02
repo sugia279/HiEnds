@@ -1,0 +1,28 @@
+Name: ''
+Extract:
+  SourcePath: .\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.dll
+  TemplateFile: ..\..\Templates\Assembly\NUnit3.yaml
+  OutputFile: ''
+  SaveDataWithResult: true
+  Query: ''
+Run:
+  InputFile: ''
+  DataFormat: ''
+  OutputFile: '%Case_Name%'
+  OutputFolder: Result
+  RunCommands:
+  - RunnerPath: ..\..\Runner\NUnit.Console-3.17.0\RunTest.bat
+    Arguments: '{{SourceFolderPath}} {{SourceFileName}} %Case_Name%'
+    Active: true
+    ReturnExitCode: 0
+    OutputContain: 'Overall result: Passed'
+    OutputNotContain: ''
+    RunAtRowIds: ''
+    UseWindowConsole: true
+    InputMapping: []
+  ExitCodeMap: {}
+  RunThreadNumber: 1
+  SaveDataWithResult: true
+Vars:
+  SourceFolderPath: .\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample
+  SourceFileName: POM_Example.dll

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SyntaxDefinition name="YAML" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Key" foreground="Blue" fontWeight="bold" />
+  <Color name="ArrayKey" foreground="Blue"/>
+  <Color name="Value" foreground="Gray" />
+  <Color name="Comment" foreground="Green" />
+  <Color name="String" foreground="Pink" />
+  <RuleSet>
+    <Span color="Key" begin="^[\s]*\w+" end=":" />
+    <Span color="ArrayKey" begin="- " end=":" />
+    <Span color="Value" begin=": " />
+    <Span color="Comment" begin="#" />
+    <Span color="String" begin="quot;" end="quot;" />    
+  </RuleSet>
+</SyntaxDefinition>

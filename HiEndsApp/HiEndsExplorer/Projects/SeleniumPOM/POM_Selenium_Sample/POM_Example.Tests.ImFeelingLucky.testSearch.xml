@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="0" runstate="Runnable" testcasecount="3" result="Passed" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.17.0.0" clr-version="4.0.30319.42000" start-time="2024-06-02 04:22:47Z" end-time="2024-06-02 04:22:51Z" duration="4.426234">
+  <command-line><![CDATA[nunit3-console  C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.dll --test:POM_Example.Tests.ImFeelingLucky.testSearch --result:"C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.Tests.ImFeelingLucky.testSearch.xml;format=nunit3" --noheader]]></command-line>
+  <filter>
+    <test>POM_Example.Tests.ImFeelingLucky.testSearch</test>
+  </filter>
+  <test-suite type="Assembly" id="1-1006" name="POM_Example.dll" fullname="C:/TFSSCR/QA/AutoTools/HiEnds/src/HiEndsApp/bin/Debug/net6.0-windows/HiEndsExplorer/Projects/SeleniumPOM/POM_Selenium_Sample/POM_Example.dll" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:48.0412510Z" end-time="2024-06-02T04:22:51.8591210Z" duration="3.817826" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+    <environment framework-version="3.13.3.0" clr-version="6.0.30" os-version="Microsoft Windows 10.0.22631" platform="Win32NT" cwd="C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Runner\NUnit.Console-3.17.0\bin\net35" machine-name="HVNLT136" user="suh" user-domain="HSNTECH" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="DisposeRunners" value="True" />
+      <setting name="WorkDirectory" value="C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Runner\NUnit.Console-3.17.0\bin\net35" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETCoreApp,Version=v6.0" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="TargetRuntimeFramework" value="netcore-6.0" />
+      <setting name="NumberOfTestWorkers" value="8" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26008" />
+      <property name="_APPDOMAIN" value="nunit-agent" />
+    </properties>
+    <test-suite type="TestSuite" id="1-1007" name="POM_Example" fullname="POM_Example" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:48.0446717Z" end-time="2024-06-02T04:22:51.8591171Z" duration="3.814445" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1-1008" name="Tests" fullname="POM_Example.Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:48.0448923Z" end-time="2024-06-02T04:22:51.8591069Z" duration="3.814215" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestFixture" id="1-1000" name="ImFeelingLucky" fullname="POM_Example.Tests.ImFeelingLucky" classname="POM_Example.Tests.ImFeelingLucky" runstate="Runnable" testcasecount="1" result="Passed" start-time="2024-06-02T04:22:48.0455899Z" end-time="2024-06-02T04:22:51.8588842Z" duration="3.813295" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+          <test-case id="1-1001" name="testSearch" fullname="POM_Example.Tests.ImFeelingLucky.testSearch" methodname="testSearch" classname="POM_Example.Tests.ImFeelingLucky" runstate="Runnable" seed="955528874" result="Passed" start-time="2024-06-02T04:22:48.4283207Z" end-time="2024-06-02T04:22:51.8569212Z" duration="3.428676" asserts="0" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

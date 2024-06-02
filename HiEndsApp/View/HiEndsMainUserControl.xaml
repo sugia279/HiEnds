@@ -1,0 +1,684 @@
+﻿<UserControl x:Class="HiEndsApp.View.HiEndsMainUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:HiEndsApp.ViewModel"
+             xmlns:hiEndsApp="clr-namespace:HiEndsApp"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModel:HiEndsMainUCViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BitmapImage x:Key="ShowAllIcon" UriSource="/Images/all.png" />
+        <BitmapImage x:Key="PassedIcon" UriSource="/Images/passed.png" />
+        <BitmapImage x:Key="FailedIcon" UriSource="/Images/failed.png" />
+        <BitmapImage x:Key="InQueueIcon" UriSource="/Images/queue.png" />
+        <BitmapImage x:Key="RunningIcon" UriSource="/Images/dog.png" />
+        <hiEndsApp:BooleanInverterConverter x:Key="BooleanInverter"/>
+        <!--<Style x:Key="SearchDataGridStyle" TargetType="DataGrid">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGrid">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <DataGridRowHeader Grid.RowSpan="2" Grid.Column="0"/>
+                            <DataGridColumnHeadersPresenter Grid.Row="0" Grid.Column="1"/>
+                            <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="DG_ScrollViewer"
+                                          VerticalScrollBarVisibility="Visible"
+                                          HorizontalScrollBarVisibility="Visible"
+                                          CanContentScroll="True"
+                            >
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="350" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Border BorderBrush="Gray" BorderThickness="1,0,1,1" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#33000000" Offset="0" />
+                        <GradientStop Color="#11000000" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <DockPanel HorizontalAlignment="Stretch" Margin="4" LastChildFill="True">
+                    <ComboBox Margin="0" Width="150"                                                                               
+                              ItemsSource="{Binding Path=TemplateFiles}"    
+                              SelectedItem="{Binding Path=SelectedTemplateFile, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                              DisplayMemberPath="FileInfo.Name"/>
+                    <Button Command="{Binding RefreshCommand}" Content="_Refresh" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="50"/>
+                    <Button Command="{Binding BrowseCommand}" Content="_Browse" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="50"/>
+                    <TextBox Margin="0" Text="{Binding SourceProjectPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                </DockPanel>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1,0,1,1" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#33000000" Offset="0" />
+                        <GradientStop Color="#11000000" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Vertical">
+                    <DockPanel>
+                        <TextBlock Text="Query: " Margin="4,2,10,2"></TextBlock>
+                        <Button DockPanel.Dock="Right" Width="50" Command="{Binding SaveQueryCommand}" Content="_Save"/>
+                        <Button DockPanel.Dock="Right" Width="50" Click="ClearQuery_Click" Command="{Binding ClearQueryCommand}" Content="_Clear"/>
+                        <ComboBox DockPanel.Dock="Right" Margin="0" IsEditable="True"
+                                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                                  KeyDown="searchTextBox_KeyDown" 
+                                  ItemsSource="{Binding Path=SearchQueries, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
+                                  />
+
+                    </DockPanel>
+                    <DockPanel HorizontalAlignment="Stretch" Margin="4" LastChildFill="True">
+                        <ComboBox DockPanel.Dock="Left" Width="60"
+                                  SelectedValue="{Binding Path=SelectedLogicSearch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                  SelectedValuePath="Content">
+                            <ComboBoxItem IsSelected="True">----</ComboBoxItem>
+                            <ComboBoxItem>AND</ComboBoxItem>
+                            <ComboBoxItem>OR</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox DockPanel.Dock="Left" Width="120"
+                                  ItemsSource="{Binding Path=SearchProperties}"    
+                                  SelectedItem="{Binding Path=SelectedSearchProperty, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  SelectedIndex="0" />
+                        <!--<ComboBox DockPanel.Dock="Left" Width="75"
+                                  SelectedValue="{Binding Path=SelectedOperatorSearch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  SelectedValuePath="Content" >
+                            <ComboBoxItem IsSelected="True">Contains</ComboBoxItem>
+                            <ComboBoxItem>In</ComboBoxItem>
+                            <ComboBoxItem>=</ComboBoxItem>
+                            <ComboBoxItem>&gt;</ComboBoxItem>
+                            <ComboBoxItem>&gt;=</ComboBoxItem>
+                            <ComboBoxItem>&lt;</ComboBoxItem>
+                            <ComboBoxItem>&lt;=</ComboBoxItem>
+                        </ComboBox>-->
+                        <Button DockPanel.Dock="Right" Width="50" Command="{Binding FindCommand}" Content="_Find" HorizontalAlignment="Right"/>
+                        <TextBox DockPanel.Dock="Right" KeyDown="searchTextBox_KeyDown" Margin="0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16" Source="{StaticResource ShowAllIcon}" />
+                            <TextBlock Text="Show All - " Margin="2,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding ShowAllCount}" FontWeight="DemiBold"  Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16" Source="{StaticResource PassedIcon}" />
+                            <TextBlock Text="Passed - " Margin="2,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding PassedCount}" FontWeight="DemiBold"  Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16" Source="{StaticResource FailedIcon}" />
+                            <TextBlock Text="Failed - " Margin="2,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding FailedCount}" FontWeight="DemiBold"  Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16" Source="{StaticResource InQueueIcon}" />
+                            <TextBlock Text="InQueue - " Margin="2,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding InQueueCount}" FontWeight="DemiBold"  Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16" Source="{StaticResource RunningIcon}" />
+                            <TextBlock Text="Running - " Margin="2,0,0,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding RunningCount}" FontWeight="DemiBold"  Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
+            <!--Style="{StaticResource SearchDataGridStyle}"-->
+            <DataGrid Name="SourceData" Grid.Row="1" Grid.Column="0" 
+                      ItemsSource="{Binding DisplayDataTable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      SelectionChanged="Data_OnSelectionChanged"
+                      SelectedIndex="{Binding SelectedRowIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      CellEditEnding="SourceData_OnCellEditEnding"
+                      AutoGeneratingColumn="SourceData_OnAutoGeneratingColumn"
+                      AutoGenerateColumns="true" CanUserAddRows ="False"
+                      LoadingRow="DataGrid_LoadingRow">
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Width="30" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}},Path=Header}"/>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="FontWeight" Value="Bold"></Setter>
+                        <Setter Property="Height" Value="28" />
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="VerticalAlignment" Value="Top" ></Setter>
+                        <Setter Property="VerticalContentAlignment" Value="Top" ></Setter>
+                    </Style>
+                    <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}" >
+                        <Setter Property="VerticalAlignment" Value="Bottom" ></Setter>
+                        <Setter Property="VerticalContentAlignment" Value="Bottom" ></Setter>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding '@Run_Status'}" Value="Available">
+                                <Setter Property="Background" Value="LightGray"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding '@Run_Status'}" Value="InQueue">
+                                <Setter Property="Background" Value="MediumPurple"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding '@Run_Status'}" Value="Running">
+                                <Setter Property="Background" Value="Orange"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding '@Run_Status'}" Value="Passed">
+                                <Setter Property="Background" Value="LimeGreen"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding '@Run_Status'}" Value="Failed">
+                                <Setter Property="Background" Value="Red"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+            <Border Grid.Row="2" BorderBrush="Gray" Margin="0,2,0,0" BorderThickness="1,1,1,1" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="#FFF2F3F5" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <DockPanel HorizontalAlignment="Stretch" Margin="2" LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Left" Text="Selected:" Margin="2" Width="auto" HorizontalAlignment="Right"/>
+                    <TextBlock DockPanel.Dock="Left" Name="SelectedRowCount" Margin="2" Width="auto" HorizontalAlignment="Right"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding RunCommand}" Content="Run" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding ResetStatusCommand}" Content="Reset" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding AddDataRowCommand}" Content="Add" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding DeleteDataRowCommand}" Content="Delete" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding UpDataRowCommand}" Content="Up" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding DownDataRowCommand}" Content="Down" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </DockPanel>
+            </Border>
+            <Border Grid.Row="3" BorderBrush="Gray" BorderThickness="1,0,1,2" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="#FFF2F3F5" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <DockPanel HorizontalAlignment="Stretch" Margin="2" LastChildFill="True">
+                    <TextBlock Text="Include Run Result" Margin="4,2,0,2" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+                    <CheckBox DockPanel.Dock="Right" Width="18" HorizontalAlignment="Right" VerticalAlignment="Center"
+                              IsChecked="{Binding SourceProjectObject.Extract.SaveDataWithResult, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox DockPanel.Dock="Right" Width="200" Margin="0" Text="{Binding SourceProjectObject.Extract.OutputFile, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Right"/>
+                    <Button DockPanel.Dock="Right" Width="60" Command="{Binding SaveDataToFileCommand}" Content="Save Data" HorizontalAlignment="Right" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+                    <Button DockPanel.Dock="Right" Width="80" Command="{Binding AppendDataToFileCommand}" Content="Append Data" HorizontalAlignment="Right" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+
+                </DockPanel>
+            </Border>
+        </Grid>
+        <GridSplitter Grid.Row="2" Grid.Column="0" Height="5" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
+        <GroupBox Grid.Row="3" Grid.Column="0" Header="Runner">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="200" Name="SettingRow"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Row="0" Height="Auto"
+                          ItemsSource="{Binding SourceProjectObject.Run.RunCommands}"
+                          SelectedItem="{Binding SelectedRunCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedIndex="{Binding SelectedRunIndex, Mode=TwoWay}"
+                          LoadingRow="DataGrid_LoadingRow"
+                          IsReadOnly="True">
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Width="30" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}},Path=Header}"/>
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="Height" Value="28" />
+                            <Setter Property="Width" Value="auto"/>
+                            <Setter Property="VerticalAlignment" Value="Top" ></Setter>
+                            <Setter Property="VerticalContentAlignment" Value="Top" ></Setter>
+                        </Style>
+                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}" >
+                            <Setter Property="VerticalAlignment" Value="Bottom" ></Setter>
+                            <Setter Property="VerticalContentAlignment" Value="Bottom" ></Setter>
+                        </Style>
+                    </DataGrid.Resources>
+                    <!-- Define your DataGrid columns here -->
+                </DataGrid>
+                <GridSplitter Grid.Row="1" Grid.Column="0" Height="5" BorderThickness="1" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
+                <Border Grid.Row="2" BorderBrush="Gray" Margin="0,2,0,0" BorderThickness="1,1,1,1" >
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="White" Offset="0" />
+                            <GradientStop Color="#FFF2F3F5" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="5*" Name="MoreSettingRow"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="340" />
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Button DockPanel.Dock="Left"  Width="50" Command="{Binding BrowseRunnerCommand}" Content="_Browse" IsEnabled="{Binding BrowseRunCommandEnable}" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                                <TextBox DockPanel.Dock="Left" Width="255" Text="{Binding SelectedRunCommand.RunnerPath, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding BrowseRunCommandEnable}" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+
+                                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Margin="2,0,2,0"
+                                             Text="{Binding SelectedRunCommand.Arguments, UpdateSourceTrigger=PropertyChanged}"
+                                             IsEnabled="{Binding BrowseRunCommandEnable}"/>
+                                    
+                                </DockPanel>
+
+                                <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                                    <!--<TextBlock Text="Active: " DockPanel.Dock="Right" Margin="4,2,0,2"  HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+                                    <CheckBox DockPanel.Dock="Left" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" FlowDirection="LeftToRight" Content="Active"
+                                              IsChecked="{Binding SelectedRunCommand.Active, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Button DockPanel.Dock="Right" Width="70" Command="{Binding ShowMoreCommand}" Content="Show More" HorizontalAlignment="Right" Click="Button_Click"/>
+                                <Button DockPanel.Dock="Right" Width="50" Command="{Binding DeleteRunnerCommand}" Content="Delete" HorizontalAlignment="Right"/>
+                                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding UpRunnerCommand}" Content="Up" HorizontalAlignment="Right"/>
+                                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding DownRunnerCommand}" Content="Down" HorizontalAlignment="Right"/>
+                                    <Button DockPanel.Dock="Right" Width="50" Command="{Binding AddRunnerCommand}" Content="Add" HorizontalAlignment="Right"/>
+                            </DockPanel>
+                            </Grid>
+                        <GroupBox Grid.Row="1" Grid.Column="0" Header="Check output">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="ExitCode: " VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedRunCommand.ReturnExitCode, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Contain: " VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedRunCommand.OutputContain, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Not Contain: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedRunCommand.OutputNotContain, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Row="1" Grid.Column="1" Header="More Setting">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+                                    <CheckBox DockPanel.Dock="Right" Width="18" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                              IsChecked="{Binding SelectedRunCommand.UseWindowConsole, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="Use Window Console: " DockPanel.Dock="Right" Margin="10,2,0,2" VerticalAlignment="Center"/>
+                                    <TextBox DockPanel.Dock="Right" Width="100" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="4,2,0,2"
+                                             Text="{Binding SelectedRunCommand.RunAtRowIds, UpdateSourceTrigger=PropertyChanged}"
+                                             ToolTip="Only run at the specified Id. Ex: 1,3,5,7. If 0, this command will be run first as a setup method. If -1, this command will be run latest as a Teardown method."/>
+                                    <TextBlock Text="Only run at row Ids: " DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </DockPanel>
+
+                                <GroupBox Grid.Row="1" Grid.Column="0" Header="Input Mapping" IsEnabled="{Binding SelectedRunCommand.UseWindowConsole, Converter={StaticResource BooleanInverter}}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="20" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="Auto"
+                                             ItemsSource="{Binding SelectedRunCommand.InputMapping}"
+                                             SelectedItem="{Binding SelectedInputMapping, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedIndex="{Binding SelectedInputMappingIndex, Mode=TwoWay}"
+                                             LoadingRow="DataGrid_LoadingRow"
+                                             IsReadOnly="True">
+                                            <DataGrid.RowHeaderTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Width="30" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}},Path=Header}"/>
+                                                </DataTemplate>
+                                            </DataGrid.RowHeaderTemplate>
+                                            <DataGrid.Resources>
+                                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                                                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                                                    <Setter Property="Height" Value="28" />
+                                                    <Setter Property="Width" Value="auto"/>
+                                                    <Setter Property="VerticalAlignment" Value="Top" ></Setter>
+                                                    <Setter Property="VerticalContentAlignment" Value="Top" ></Setter>
+                                                </Style>
+                                                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}" >
+                                                    <Setter Property="VerticalAlignment" Value="Bottom" ></Setter>
+                                                    <Setter Property="VerticalContentAlignment" Value="Bottom" ></Setter>
+                                                </Style>
+                                            </DataGrid.Resources>
+                                            <!-- Define your DataGrid columns here -->
+                                        </DataGrid>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </GroupBox>
+        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Width="5" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext"/>
+        <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="4"
+            BorderBrush="Gray" BorderThickness="1,1,1,1" 
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            Width="Auto">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#33000000" Offset="0" />
+                    <GradientStop Color="#11000000" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <GroupBox Header="Run Result">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Gray" BorderThickness="1,1,1,1" >
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#33000000" Offset="0" />
+                                <GradientStop Color="#11000000" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <DockPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" LastChildFill="True">
+                            <!--<Button Width="50" DockPanel.Dock="Right" Command="{Binding NewResultForlderCommand}" Content="New" HorizontalAlignment="Right"/>-->
+                            <ComboBox DockPanel.Dock="Right" IsEditable="True" Margin="0"
+                                      HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                                      ItemsSource="{Binding Path=ResultFolders, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"    
+                                      SelectedItem="{Binding Path=SelectedResultFolder, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                            />
+                        </DockPanel>
+                    </Border>
+                    <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1,1,1,1"  Margin="0,2">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="White" Offset="0" />
+                                <GradientStop Color="#FFF2F3F5" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width ="*"/>
+                                <ColumnDefinition Width ="*"/>
+                                <ColumnDefinition Width ="*"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height ="*"/>
+                                <RowDefinition Height ="5"/>
+                                <RowDefinition Height ="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Margin="10,0,10,0" FontSize="15" FontWeight="Bold" Foreground="LimeGreen">Passed:</TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="15" FontWeight="Bold"
+                                       Text="{Binding PassedCount, UpdateSourceTrigger=PropertyChanged}"/>
+                            <!--<TextBlock Grid.Column="2" Margin="10,0,10,0" FontSize="15" FontWeight="Bold" Foreground="BlueViolet">InQueue:</TextBlock>
+                            <TextBlock Grid.Column="3" FontSize="15" FontWeight="Bold"
+                                       Text="{Binding InQueueCount, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                            <TextBlock Grid.Row="0" Grid.Column="2" Margin="10,0,10,0" FontSize="15" FontWeight="Bold" Foreground="OrangeRed" >Failed:</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="3" FontSize="15" FontWeight="Bold"
+                                       Text="{Binding FailedCount, UpdateSourceTrigger=PropertyChanged}"/>
+                            <!--<TextBlock Grid.Row="1" Grid.Column="2" Margin="10,0,10,0" FontSize="15" FontWeight="Bold" Foreground="Blue">Running:</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="3" FontSize="15" FontWeight="Bold"
+                                       Text="{Binding RunningCount, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <Separator Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="4" Margin ="10,0,10,0"  BorderBrush="Black" BorderThickness="100"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="10,0,10,0" FontSize="16" FontWeight="Bold">Run Total:</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" FontSize="16" FontWeight="Bold" 
+                                       Text="{Binding RunTotalCount, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="70" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1,1,1,1" >
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="AliceBlue" Offset="0" />
+                                    <GradientStop Color="#FFF2F3F5" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel>
+                                <TextBlock Margin="4"  FontWeight="DemiBold" FontSize="16" Text="Output File:"/>
+                                <TextBox Text="{Binding SelectedOutputFile, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="14"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Visible"
+                 IsReadOnly="True"/>
+                                <DockPanel HorizontalAlignment="Stretch" Margin="0,0,0,0"  LastChildFill="True">
+                                    <TextBlock DockPanel.Dock="Left" Margin="4" FontWeight="DemiBold" FontSize="16">Run Time:</TextBlock>
+                                    <TextBlock DockPanel.Dock="Right" Width="150" Text="{Binding SelectedRunResult.RunStatus}"
+                       Padding="5" FontWeight="DemiBold" FontSize="16">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedRunResult.RunStatus}" Value="InQueue">
+                                                        <Setter Property="Background" Value="MediumPurple"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedRunResult.RunStatus}" Value="Running">
+                                                        <Setter Property="Background" Value="Orange"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedRunResult.RunStatus}" Value="Passed">
+                                                        <Setter Property="Background" Value="LimeGreen"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedRunResult.RunStatus}" Value="Failed">
+                                                        <Setter Property="Background" Value="Red"></Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <ComboBox DockPanel.Dock="Right" HorizontalContentAlignment="Left" VerticalAlignment="Center"
+                      ItemsSource="{Binding RunResults, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                      SelectedItem="{Binding SelectedRunResult, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      DisplayMemberPath="RunDateTime"/>
+                                </DockPanel>
+                                <DataGrid Height="Auto" AutoGenerateColumns="False"
+                  ItemsSource="{Binding RunCommandResults, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedRunCommandResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  LoadingRow="DataGrid_LoadingRow">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Height" Value="28" />
+                                            <Setter Property="Width" Value="auto"/>
+                                            <Setter Property="VerticalAlignment" Value="Top" />
+                                            <Setter Property="VerticalContentAlignment" Value="Top" />
+                                        </Style>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}" >
+                                            <Setter Property="VerticalAlignment" Value="Bottom" />
+                                            <Setter Property="VerticalContentAlignment" Value="Bottom" />
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.RowHeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="30" Text="{Binding Header}"/>
+                                        </DataTemplate>
+                                    </DataGrid.RowHeaderTemplate>
+                                    <!-- Define your DataGrid columns here -->
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Runner" Binding="{Binding RunCommand.RunnerPath}"/>
+                                        <DataGridTextColumn Header="RunResult" Binding="{Binding RunResult}"/>
+                                        <DataGridTextColumn Header="RunDateTime" Binding="{Binding RunDateTime}"/>
+                                        <DataGridTextColumn Header="RunTime" Binding="{Binding RunTime}"/>
+                                        <DataGridTextColumn Header="Note" Binding="{Binding Note}"/>
+                                    </DataGrid.Columns>
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="DataGridRow">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding 'RunResult'}" Value="Passed">
+                                                    <Setter Property="Background" Value="LimeGreen"></Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding 'RunResult'}" Value="Inactive">
+                                                    <Setter Property="Background" Value="Gray"></Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding 'RunResult'}" Value="NotInRange">
+                                                    <Setter Property="Background" Value="DarkGray"></Setter>
+                                                </DataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <!-- Condition to check if ReturnExitCode is not 0 -->
+                                                        <Condition Binding="{Binding RunResult}" Value="Passed" />
+                                                        <Condition Binding="{Binding RunResult}" Value="Inactive" />
+                                                        <Condition Binding="{Binding RunResult}" Value="NotInRange" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="Red"/>
+                                                </MultiDataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                </DataGrid>
+                            </StackPanel>
+                        </Border>
+                        <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" ResizeBehavior="PreviousAndNext"/>
+                        <DockPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" LastChildFill="True">
+                            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1" >
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#33000000" Offset="0" />
+                                        <GradientStop Color="#11000000" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <DockPanel HorizontalAlignment="Stretch" Margin="4" LastChildFill="True">
+                                    <TextBlock FontWeight="DemiBold" VerticalAlignment="Center" Text="System Log:"/>
+                                </DockPanel>
+                            </Border>
+                            <TextBox HorizontalAlignment ="Stretch"  VerticalAlignment="Stretch"
+                                     Text="{Binding SelectedRunCommandResult.SystemLog, UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="14"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Visible"
+                                     Background="DimGray"
+                                     Foreground="White"
+                            />
+                        </DockPanel>
+                        <DockPanel Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" LastChildFill="True">
+                            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1" >
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#33000000" Offset="0" />
+                                        <GradientStop Color="#11000000" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <DockPanel HorizontalAlignment="Stretch" Margin="4" LastChildFill="True">
+                                    <TextBlock FontWeight="DemiBold" VerticalAlignment="Center" Text="Output Log: "/>
+                                </DockPanel>
+                            </Border>
+                            <TextBox Name="TxtLogContent" HorizontalAlignment ="Stretch"  VerticalAlignment="Stretch"
+                                     Text="{Binding SelectedRunCommandResult.OutputLog, UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="14"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     VerticalScrollBarVisibility="Visible"
+                                     Background="DimGray"
+                                     Foreground="White"
+                            />
+                            <!--<RichTextBox Name="TxtLogContent"
+         Text="{Binding SelectedRunCommandResult.Log, UpdateSourceTrigger=PropertyChanged}"
+         TextWrapping="Wrap"
+         AcceptsReturn="True"
+         VerticalScrollBarVisibility="Visible"
+/>-->
+                        </DockPanel>
+                        
+                        <DockPanel Grid.Row="4" HorizontalAlignment="Stretch" Margin="0" LastChildFill="True">
+                            <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" LastChildFill="True">
+                                <TextBlock DockPanel.Dock="Left" Margin="4" FontWeight="DemiBold" VerticalAlignment="Center">RunComments:</TextBlock>
+                                <Button DockPanel.Dock="Left"  Width="50" Margin="4" Command="{Binding SaveCommentCommand}" Content="_Save" HorizontalAlignment="Left"/>
+                            </DockPanel>
+                            <TextBox 
+         Text="{Binding SelectedRunResult.RunComments, UpdateSourceTrigger=PropertyChanged}"
+         TextWrapping="Wrap"
+         AcceptsReturn="True"
+         VerticalScrollBarVisibility="Visible"
+/>
+                        </DockPanel>
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+        </Border>
+
+    </Grid>
+</UserControl>

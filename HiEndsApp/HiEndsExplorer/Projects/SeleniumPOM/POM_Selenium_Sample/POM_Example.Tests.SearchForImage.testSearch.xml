@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="0" runstate="Runnable" testcasecount="3" result="Passed" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.17.0.0" clr-version="4.0.30319.42000" start-time="2024-06-02 04:22:58Z" end-time="2024-06-02 04:23:02Z" duration="4.803664">
+  <command-line><![CDATA[nunit3-console  C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.dll --test:POM_Example.Tests.SearchForImage.testSearch --result:"C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.Tests.SearchForImage.testSearch.xml;format=nunit3" --noheader]]></command-line>
+  <filter>
+    <test>POM_Example.Tests.SearchForImage.testSearch</test>
+  </filter>
+  <test-suite type="Assembly" id="1-1006" name="POM_Example.dll" fullname="C:/TFSSCR/QA/AutoTools/HiEnds/src/HiEndsApp/bin/Debug/net6.0-windows/HiEndsExplorer/Projects/SeleniumPOM/POM_Selenium_Sample/POM_Example.dll" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:58.6537716Z" end-time="2024-06-02T04:23:02.8463065Z" duration="4.192493" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+    <environment framework-version="3.13.3.0" clr-version="6.0.30" os-version="Microsoft Windows 10.0.22631" platform="Win32NT" cwd="C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Runner\NUnit.Console-3.17.0\bin\net35" machine-name="HVNLT136" user="suh" user-domain="HSNTECH" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="DisposeRunners" value="True" />
+      <setting name="WorkDirectory" value="C:\TFSSCR\QA\AutoTools\HiEnds\src\HiEndsApp\bin\Debug\net6.0-windows\HiEndsExplorer\Runner\NUnit.Console-3.17.0\bin\net35" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETCoreApp,Version=v6.0" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="TargetRuntimeFramework" value="netcore-6.0" />
+      <setting name="NumberOfTestWorkers" value="8" />
+    </settings>
+    <properties>
+      <property name="_PID" value="83400" />
+      <property name="_APPDOMAIN" value="nunit-agent" />
+    </properties>
+    <test-suite type="TestSuite" id="1-1007" name="POM_Example" fullname="POM_Example" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:58.6581830Z" end-time="2024-06-02T04:23:02.8463006Z" duration="4.188117" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1-1008" name="Tests" fullname="POM_Example.Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2024-06-02T04:22:58.6583831Z" end-time="2024-06-02T04:23:02.8462857Z" duration="4.187903" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestFixture" id="1-1004" name="SearchForImage" fullname="POM_Example.Tests.SearchForImage" classname="POM_Example.Tests.SearchForImage" runstate="Runnable" testcasecount="1" result="Passed" start-time="2024-06-02T04:22:58.6591690Z" end-time="2024-06-02T04:23:02.8459514Z" duration="4.186782" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+          <test-case id="1-1005" name="testSearch" fullname="POM_Example.Tests.SearchForImage.testSearch" methodname="testSearch" classname="POM_Example.Tests.SearchForImage" runstate="Runnable" seed="237706253" result="Passed" start-time="2024-06-02T04:22:59.0516489Z" end-time="2024-06-02T04:23:02.8430458Z" duration="3.791489" asserts="0" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,14 @@
+---
+BrowseType: File:NUnit Assembly|*.dll
+Type: Assembly
+DataDriver: HiEndsExtractor.DataDriver.dll
+FilterConditions:
+  Namespaces:  
+  Attributes:  
+  - TestAttribute
+LoadedAttributes:
+- FullMethodName
+Remap:
+  FullMethodName: Case_Name  
+AttributeNotExistString: "[[NotExist]]"
+NullValueString: "[[null]]"

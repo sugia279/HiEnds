@@ -1,0 +1,296 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\TigerRoarAI.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>TigerRoar</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\all.png" />
+    <None Remove="Images\dog.png" />
+    <None Remove="Images\failed.png" />
+    <None Remove="Images\file.png" />
+    <None Remove="Images\floppy-disc-16.png" />
+    <None Remove="Images\floppy-disc.png" />
+    <None Remove="Images\FolderClose.png" />
+    <None Remove="Images\FolderOpen.png" />
+    <None Remove="Images\folder_explorer.png" />
+    <None Remove="Images\HiProject.png" />
+    <None Remove="Images\HiTemplate.png" />
+    <None Remove="Images\HiTemplate1.png" />
+    <None Remove="Images\material.png" />
+    <None Remove="Images\OpenExplorer.png" />
+    <None Remove="Images\passed.png" />
+    <None Remove="Images\play.png" />
+    <None Remove="Images\plus.png" />
+    <None Remove="Images\queue.png" />
+    <None Remove="Images\refresh.png" />
+    <None Remove="Images\runnings.png" />
+    <None Remove="Images\standby.png" />
+    <None Remove="YamlSyntaxHighlight.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\TigerRoarAI.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YamlSyntaxHighlight.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\file.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\floppy-disc.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\folder_explorer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\material.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HiEndsCore\HiEndsCore.csproj" />
+    <ProjectReference Include="..\HiEndsExtractor.DataDriver\HiEndsExtractor.DataDriver.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\all.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\failed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HiTemplate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HiTemplate1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FolderClose.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\FolderOpen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HiProject.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\passed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\queue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\refresh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\runnings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\standby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\OpenExplorer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppSettings.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\AngleSharp.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Chrome\125.0.6422.141\X64\chromedriver.exe">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.TestPlatform.CommunicationUtilities.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.TestPlatform.CoreUtilities.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.TestPlatform.CrossPlatEngine.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.TestPlatform.PlatformAbstractions.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.TestPlatform.Utilities.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.VisualStudio.CodeCoverage.Shim.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.VisualStudio.TestPlatform.Common.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\NuGet.Frameworks.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine.api.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine.api_bk.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine.core.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine.core_bk.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.engine_bk.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit.framework.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\NUnit3.TestAdapter.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\NUnit3.TestAdapter.pdb">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\nunit_random_seed.tmp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.deps.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.pdb">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.runtimeconfig.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.Tests.ImFeelingLucky.testSearch.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.Tests.SearchForData.testSearch.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\POM_Example.Tests.SearchForImage.testSearch.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\selenium-manager\linux\selenium-manager">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\selenium-manager\macos\selenium-manager">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\selenium-manager\windows\selenium-manager.exe">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\SeleniumExtras.WaitHelpers.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\testcentric.engine.metadata.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\testhost.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\testhost.exe">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\WebDriver.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\POM_Selenium_Sample\WebDriverManager.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\Result\POM_Example.Tests.ImFeelingLucky.testSearch">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\Result\POM_Example.Tests.SearchForData.testSearch">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\Result\POM_Example.Tests.SearchForImage.testSearch">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Projects\SeleniumPOM\SeleniumPOM.yaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Templates\Assembly\NUnit3.yaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Templates\Csv\Csv.yaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="HiEndsExplorer\Templates\Xml\Xml.yaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="tee\tee.deps.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tee\tee.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tee\tee.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tee\tee.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tee\tee.runtimeconfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="HiEndsExplorer\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /I /Y &quot;$(ProjectDir)HiEndsExplorer&quot; &quot;$(ProjectDir)$(OutDir)HiEndsExplorer&quot;" ContinueOnError="true"/>
+  </Target>
+
+</Project>

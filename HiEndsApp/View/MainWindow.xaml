@@ -1,0 +1,254 @@
+﻿<Window x:Class="HiEndsApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HiEndsApp"
+        xmlns:model="clr-namespace:HiEndsApp.Model"
+        xmlns:view="clr-namespace:HiEndsApp.View"
+        xmlns:vm="clr-namespace:HiEndsApp.ViewModel"
+        xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="HiEndsApp" Height="800" Width="1280">
+    <!-- Icons -->
+    <Window.Resources>
+        <BitmapImage x:Key="RefreshIcon" UriSource="/Images/refresh.png" />
+        <BitmapImage x:Key="NewIcon" UriSource="/Images/plus.png" />
+        <BitmapImage x:Key="PlayIcon" UriSource="/Images/play.png" />
+        <BitmapImage x:Key="FloppyDiscIcon" UriSource="/Images/floppy-disc.png" />
+        <BitmapImage x:Key="NewFile" UriSource="/Images/file.png" />
+        <BitmapImage x:Key="NewFolder" UriSource="/Images/material.png" />
+        <BitmapImage x:Key="OpenExplorer" UriSource="/Images/OpenExplorer.png" />
+        <Style x:Key="ToolbarButton" TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <!-- TreeViewItem style with icon -->
+        <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
+                            <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource IconTemplate}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- DataTemplate for icons -->
+        <DataTemplate x:Key="IconTemplate">
+            <ContentPresenter Content="{Binding}">
+                <ContentPresenter.ContentTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Width="16" Height="16"/>
+                    </DataTemplate>
+                </ContentPresenter.ContentTemplate>
+            </ContentPresenter>
+        </DataTemplate>
+    </Window.Resources>
+    
+
+    <!-- Header Menu -->
+    <DockPanel>
+        <!-- Define StatusBar -->
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="Powered by Hien Su at"/>
+            <Hyperlink NavigateUri="https://github.com/sugia279">
+                https://github.com/sugia279
+            </Hyperlink>
+            <!-- Add more StatusBarItems as needed -->
+            <StatusBarItem Content="{Binding ErrorMessage}" Foreground="Red" FontWeight="Bold" HorizontalAlignment="Right"/>
+        </StatusBar>
+        <!-- Toolbar -->
+        <!--<ToolBarTray DockPanel.Dock="Left" Orientation="Vertical">
+            <ToolBar ToolBarTray.IsLocked="True" Height="243" VerticalAlignment="Center" Loaded="ToolBar_Loaded">
+                <CheckBox Name="cbHiEndsExplorer" Content="Show" Margin="5,7,5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                <Button Height="40" Width="40" Command="{Binding RefreshCommand}" ToolTip="New" Style="{StaticResource ToolbarButton}">
+                    <Image Source="{StaticResource RefreshIcon}" Width="24" Height="24" />
+                </Button>
+                <Button Height="40" Width="40" Command="{Binding SaveCommand}" ToolTip="Save" Style="{StaticResource ToolbarButton}">
+                    <Image Source="{StaticResource FloppyDiscIcon}" Width="24" Height="24" />
+                </Button>
+                <Button Height="40" Width="40" Command="{Binding NewCommand}" ToolTip="New" Style="{StaticResource ToolbarButton}">
+                    <Image Source="{StaticResource NewIcon}" Width="24" Height="24" />
+                </Button>
+                <Button Height="40" Width="40" Command="{Binding RunCommand}" ToolTip="Cut" Style="{StaticResource ToolbarButton}">
+                    <Image Source="{StaticResource PlayIcon}" Width="24" Height="24" />
+                </Button>
+                
+                --><!-- Add more toolbar buttons as needed --><!--
+
+            </ToolBar>
+        </ToolBarTray>-->
+        
+        <!-- Main Area -->
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" Name="Col1" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!-- Explorer Area -->
+            <Border Grid.Row="0" Grid.RowSpan="2"
+                BorderBrush="Gray" BorderThickness="1,1,1,1" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Visibility="{Binding IsHiEndsModuleExplorerVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                Width="Auto">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#33000000" Offset="0" />
+                        <GradientStop Color="#11000000" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <GroupBox Header="HiEnds Explorer">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="1.5*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Height="30" Width="30" Command="{Binding OpenExplorerCommand}" ToolTip="Open Explorer">
+                                <Image Source="{StaticResource OpenExplorer}" Width="24" Height="24" />
+                            </Button>
+                            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Height="30" Width="30" Command="{Binding RefreshCommand}" ToolTip="Refresh Data">
+                                <Image Source="{StaticResource RefreshIcon}" Width="24" Height="24" />
+                            </Button>
+                            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Height="30" Width="30" Command="{Binding SaveCommand}" ToolTip="Save Data">
+                                <Image Source="{StaticResource FloppyDiscIcon}" Width="24" Height="24" />
+                            </Button>
+                            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Height="30" Width="30" Command="{Binding NewFolderCommand}" ToolTip="New Folder">
+                                <Image Source="{StaticResource NewFolder}" Width="24" Height="24" />
+                            </Button>
+                            <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Height="30" Width="30" Command="{Binding NewFileCommand}" ToolTip="New File">
+                                <Image Source="{StaticResource NewFile}" Width="24" Height="24" />
+                            </Button>
+                        </DockPanel>
+                        <TreeView Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            ItemsSource="{Binding Path=HiEndsModules, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            SelectedItemChanged="TestNodeView_SelectedItemChanged"
+                            PreviewKeyDown="TreeView_PreviewKeyDown" >
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="{x:Type TreeViewItem}">
+                                    <EventSetter Event="RequestBringIntoView" Handler="TreeNodeView_RequestBringIntoView"/>
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="Foreground" Value="DarkCyan" />
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontFamily" Value="Trebuchet MS" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                            <Setter Property="Foreground" Value="White" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type model:TreeNodeView}" ItemsSource="{Binding Children}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="16" Height="16" Margin="3,0" Source="{Binding IconPath, Mode=OneWay}" />
+                                        <ContentControl Content="{Binding}">
+                                            <ContentControl.Style>
+                                                <Style TargetType="ContentControl">
+                                                    <Setter Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding Label}" />
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsEditing}" Value="True">
+                                                            <Setter Property="ContentTemplate">
+                                                                <Setter.Value>
+                                                                    <DataTemplate>
+                                                                        <TextBox Text="{Binding Label, UpdateSourceTrigger=PropertyChanged}"/>
+                                                                    </DataTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ContentControl.Style>
+                                        </ContentControl>
+                                    </StackPanel>
+
+                                </HierarchicalDataTemplate>
+                            </TreeView.Resources>
+                        </TreeView>
+                        <TabControl Grid.Row ="2"  SelectedItem="{Binding SelectedTabItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                            <TabItem Name="Properties">
+                                <TabItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Properties" Margin="2,0,0,0" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single"
+                                          ItemsSource="{Binding PropertyItemsView.PropertyCollectionView}">
+                                    <DataGrid.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.Panel>
+                                                <ItemsPanelTemplate>
+                                                    <DataGridRowsPresenter />
+                                                </ItemsPanelTemplate>
+                                            </GroupStyle.Panel>
+                                            <GroupStyle.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <TextBlock Margin="10"  FontWeight="Bold" FontSize="15" Text="{Binding Name}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GroupStyle.HeaderTemplate>
+                                        </GroupStyle>
+                                    </DataGrid.GroupStyle>
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name" FontSize="13" Binding="{Binding Name}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Value" FontSize="13" Binding="{Binding Value}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </TabItem>
+                            <TabItem Name="YAML">
+                                <TabItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="YAML" Margin="2,0,0,0" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+                                    <avalonedit:TextEditor Name="YamlTextEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                           Document="{Binding Path=YamlContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                                           TextChanged="YamlTextEditor_OnTextChanged"/>
+                                    <Button Grid.Row="1" Content="Save and Refresh" Command="{Binding SaveRefreshYamlCommand}"></Button>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </GroupBox>
+            </Border>
+            <Button Grid.Row="0" Grid.Column="1" Width="10" Content="||"
+                    Click="ButtonBase_OnClick"></Button>
+            <GridSplitter Grid.Row="1" Grid.Column="1" Width="10" HorizontalAlignment="Stretch"/>
+            <!--<view:HiEndsMainUserControl Grid.Column="2"></view:HiEndsMainUserControl>-->
+            <!-- ContentControl to dynamically switch between UserControls -->
+            <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" x:Name="Pages"
+                            Content="{Binding CurrentUserControl}" />
+
+        </Grid>
+       
+    </DockPanel>
+</Window>
