@@ -9,13 +9,13 @@ https://github.com/sugia279/HiEnds/blob/main/AppVersions/TigerRoar_V1.7z
 - Install **.NET 8 or later**: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.301-windows-x64-installer
 - **Download the TigerRoar_V1.7z => Decompress => Open TigerRoar.exe**
    
-## Use Case: NUnit 3 Test Runner
+## Use Case: NUnit 3 Test Runner for Tests built by .NetFrx and .NetCore
 
 TigerRoar addresses the lack of an official **GUI for NUnit 3.x** by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools such as VS, IntelliJ. In addition, is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
 
 https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
 
-- **Test Discovery**: Browse and discover all tests within a specified DLL, ensuring no test is overlooked.
+- **Test Discovery**: Browse and discover all tests within a specified DLL built for **.NetFrx or .NetCore**, ensuring no test is overlooked. 
 - **Search Test**: Search tests following the criteria of case name or the test method attributes.
 - **Selective Test Execution**: Easily select and run specific tests from the discovered list using the integrated grid.
 - **Compatibility with NUnit 3.17.0**: Built to work flawlessly with NUnit 3.17.0, leveraging its powerful test execution capabilities.
