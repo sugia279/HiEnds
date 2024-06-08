@@ -1,11 +1,13 @@
 # HiEnds - TigerRoar
 TigerRoar is a powerful tool designed to assist in automating and managing command execution tasks in development and deployment environments. This tool aims to make it easier for developers and system administrators to execute complex commands and scripts, track results, and manage outputs effectively.
 ![image](https://github.com/sugia279/HiEnds/assets/10128207/04f4d254-fce4-4422-ad37-3efbf60a83aa)
+
+
 **App Version**:
 https://github.com/sugia279/HiEnds/blob/main/AppVersions/TigerRoar_V1.7z
-
-## Requirements
-- **.NET 8 or later**: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.301-windows-x64-installer
+**Requirements**
+- Install **.NET 8 or later**: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.301-windows-x64-installer
+- **Download the TigerRoar_V1.7z => Decompress => Open TigerRoar.exe**
    
 ## Use Case: NUnit 3 Test Runner
 TigerRoar also provides a specialized use case for managing and running NUnit tests. This feature is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
