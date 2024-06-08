@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:HiEndsApp.ViewModel"
         xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="HiEndsApp" Height="800" Width="1280">
+        Title="TigerRoar" Height="800" Width="1280">
     <!-- Icons -->
     <Window.Resources>
         <BitmapImage x:Key="RefreshIcon" UriSource="/Images/refresh.png" />
