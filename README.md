@@ -2,6 +2,38 @@
 TigerRoar is a powerful tool designed to assist in automating and managing command execution tasks in development and deployment environments. This tool aims to make it easier for developers and system administrators to execute complex commands and scripts, track results, and manage outputs effectively.
 ![image](https://github.com/sugia279/HiEnds/assets/10128207/04f4d254-fce4-4422-ad37-3efbf60a83aa)
 
+## Use Case: NUnit 3 Test Runner
+TigerRoar also provides a specialized use case for managing and running NUnit tests. This feature is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
+https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
+- **GUI for NUnit Tests**: HiEndsRunner addresses the lack of an official GUI for NUnit 3.x by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools and integrates seamlessly into your workflow.
+- **Test Discovery**: Browse and discover all tests within a specified DLL, ensuring no test is overlooked.
+- **Selective Test Execution**: Easily select and run specific tests from the discovered list using the integrated grid.
+- **Compatibility with NUnit 3.17.0**: Built to work flawlessly with NUnit 3.17.0, leveraging its powerful test execution capabilities.
+- **Integration with `nunitconsole.exe`**: Executes selected tests using `nunitconsole.exe`, providing detailed results and logs.
+By offering a GUI for NUnit 3.x, HiEndsRunner fills a crucial gap in the NUnit ecosystem, providing developers and testers with a powerful tool to manage and execute their tests efficiently.
+
+## Getting Started
+
+1. **Download and Install**: Download HiEndsRunner from the [release page](#) and follow the installation instructions.
+2. **Load DLL**: Open TigerRoar and browse to the DLL containing your NUnit tests.
+3. **Run Tests**: Select the tests you want to run from the displayed list and click the "Run" button.
+4. **View Results**: Analyze the test results directly within the tool.
+
+## Requirements
+
+- **.NET Framework 4.6.1 or later**
+- **NUnit 3.17.0**
+- **nunitconsole.exe** (included with NUnit 3.17.0)
+
+### Benefits of Using TigerRoar for NUnit Test Runner
+
+- **Streamlined Test Management:** Simplifies the process of discovering, selecting, and running NUnit tests from a DLL.
+- **Enhanced Productivity:** Reduces the time and effort required to manage and execute tests, allowing developers to focus on coding and debugging.
+- **Comprehensive Logging:** Provides detailed logs and results for each test run, aiding in quick analysis and troubleshooting.
+- **Flexibility and Control:** Offers the ability to configure test runs with specific parameters and arguments, ensuring tests are executed exactly as needed.
+
+TigerRoar's NUnit Test Runner feature is designed to enhance the efficiency and effectiveness of your testing workflows, making it an essential tool for any development team using NUnit for their testing needs.
+
 ## Key Features of TigerRoar
 ### Command and Script Execution:
 TigerRoar allows users to run commands and scripts from a user interface or through scheduled tasks. The tool supports various command and script types, including batch, PowerShell, and other scripting languages.
@@ -22,38 +54,3 @@ TigerRoar provides an intuitive and easy-to-use interface, enabling users to con
 - **Ease of Use and Deployment:** A user-friendly interface and session management features help users quickly get accustomed to and deploy TigerRoar into their current workflows.
 TigerRoar is an indispensable tool for developers and system administrators, optimizing the command and script execution process while ensuring accuracy and efficiency in every task.
 
-## Use Case: NUnit Test Management
-TigerRoar also provides a specialized use case for managing and running NUnit tests. This feature is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
-
-
-https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
-
-
-### Key Features of NUnit Test Management
-
-1. **DLL Browsing and Test Discovery:**
-   - Users can browse and select a DLL file containing NUnit tests.
-   - TigerRoar automatically discovers and lists all the tests within the selected DLL.
-   - The discovered tests are displayed in a grid, allowing users to easily view and manage them.
-
-2. **Test Selection and Execution:**
-   - Users can select individual or multiple tests from the displayed list.
-   - TigerRoar integrates with `nunit3-console.exe` (NUnit Console Runner) of NUnit 3.17.0 to execute the selected tests.
-   - Users can specify command-line arguments and parameters for the test execution, providing flexibility and control over the test run configuration.
-
-3. **Output Logging and Result Analysis:**
-   - The tool captures and logs the output from the test runs, including detailed test results and any error messages.
-   - Users can review the test outputs directly within TigerRoar, making it easy to analyze test results and diagnose issues.
-
-4. **Automated and Manual Test Runs:**
-   - TigerRoar supports both automated test runs as part of a CI/CD pipeline and manual test execution from the user interface.
-   - This flexibility allows for continuous integration and delivery, as well as on-demand testing during development and debugging.
-
-### Benefits of Using TigerRoar for NUnit Test Management
-
-- **Streamlined Test Management:** Simplifies the process of discovering, selecting, and running NUnit tests from a DLL.
-- **Enhanced Productivity:** Reduces the time and effort required to manage and execute tests, allowing developers to focus on coding and debugging.
-- **Comprehensive Logging:** Provides detailed logs and results for each test run, aiding in quick analysis and troubleshooting.
-- **Flexibility and Control:** Offers the ability to configure test runs with specific parameters and arguments, ensuring tests are executed exactly as needed.
-
-TigerRoar's NUnit Test Management feature is designed to enhance the efficiency and effectiveness of your testing workflows, making it an essential tool for any development team using NUnit for their testing needs.
