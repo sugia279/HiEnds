@@ -1,0 +1,9 @@
+*.vsidx
+/HiEndsApp/obj
+/HiEndsCore/obj
+/HiEndsExtractor.DataDriver/obj
+/tee/tee/obj
+/.vs
+/HiEndsApp/bin
+/HiEndsCore/bin
+/HiEndsExtractor.DataDriver/bin
