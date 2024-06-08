@@ -5,6 +5,7 @@ TigerRoar is a powerful tool designed to assist in automating and managing comma
 
 **App Version**:
 https://github.com/sugia279/HiEnds/blob/main/AppVersions/TigerRoar_V1.7z
+
 **Requirements**
 - Install **.NET 8 or later**: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.301-windows-x64-installer
 - **Download the TigerRoar_V1.7z => Decompress => Open TigerRoar.exe**
