@@ -7,11 +7,15 @@ TigerRoar also provides a specialized use case for managing and running NUnit te
 
 https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
 
-- **GUI for NUnit Tests**: HiEndsRunner addresses the lack of an official GUI for NUnit 3.x by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools and integrates seamlessly into your workflow.
+- **GUI for NUnit Tests**: HiEnds-TigerRoar addresses the lack of an official GUI for NUnit 3.x by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools and integrates seamlessly into your workflow.
 - **Test Discovery**: Browse and discover all tests within a specified DLL, ensuring no test is overlooked.
 - **Selective Test Execution**: Easily select and run specific tests from the discovered list using the integrated grid.
 - **Compatibility with NUnit 3.17.0**: Built to work flawlessly with NUnit 3.17.0, leveraging its powerful test execution capabilities.
 - **Integration with `nunitconsole.exe`**: Executes selected tests using `nunitconsole.exe`, providing detailed results and logs.
+- **Can run multithread**: Set RunThreadNumber = x then click the Save button, click Refresh and select multi-tests to enjoy it.
+
+https://github.com/sugia279/HiEnds/assets/10128207/a537202e-d098-47a2-988c-d605a80d450a
+
 By offering a GUI for NUnit 3.x, HiEndsRunner fills a crucial gap in the NUnit ecosystem, providing developers and testers with a powerful tool to manage and execute their tests efficiently.
 
 ## Getting Started
@@ -23,7 +27,7 @@ By offering a GUI for NUnit 3.x, HiEndsRunner fills a crucial gap in the NUnit e
 
 ## Requirements
 
-- **.NET Framework 4.6.1 or later**
+- **.NET 6 or later**
 - **NUnit 3.17.0**
 - **nunitconsole.exe** (included with NUnit 3.17.0)
 
