@@ -12,7 +12,7 @@ https://github.com/sugia279/HiEnds/blob/main/AppVersions/TigerRoar_V1.7z
    
 ## Use Case: NUnit 3 Test Runner GUI for Tests
 
-TigerRoar addresses the lack of an official **GUI for NUnit 3.x** by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools such as VS, IntelliJ. In addition, is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
+TigerRoar addresses the lack of an official **GUI for NUnit 3.x** by providing a user-friendly interface for running and managing NUnit tests. This is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
 
 https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
 
