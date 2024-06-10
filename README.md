@@ -10,13 +10,13 @@ https://github.com/sugia279/HiEnds/blob/main/AppVersions/TigerRoar_V1.7z
 - Install **.NET 8 or later**: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.301-windows-x64-installer
 - **Download the TigerRoar_V1.7z => Decompress => Open TigerRoar.exe**
    
-## Use Case: NUnit 3 Test Runner for Tests built by .NetFrx and .NetCore
+## Use Case: NUnit 3 Test Runner GUI for Tests
 
 TigerRoar addresses the lack of an official **GUI for NUnit 3.x** by providing a user-friendly interface for running and managing NUnit tests. This eliminates the need for third-party tools such as VS, IntelliJ. In addition, is particularly useful for developers and QA engineers who need to automate and streamline their testing processes using NUnit 3.17.0.
 
 https://github.com/sugia279/HiEnds/assets/10128207/487ee507-de1a-45d7-8ff4-ba0b7cab4fe4
 
-- **Test Discovery**: Browse and discover all tests within a specified DLL built for **.NetFrx or .NetCore**, ensuring no test is overlooked. 
+- **Test Discovery**: Browse and discover all tests within a specified DLL, ensuring no test is overlooked. 
 - **Search Test**: Search tests following the criteria of case name or the test method attributes.
 - **Selective Test Execution**: Easily select and run specific tests from the discovered list using the integrated grid.
 - **Compatibility with NUnit 3.17.0**: Built to work flawlessly with NUnit 3.17.0, leveraging its powerful test execution capabilities.
@@ -44,6 +44,8 @@ By offering a GUI for NUnit 3.x, HiEndsRunner fills a crucial gap in the NUnit e
 TigerRoar's NUnit Test Runner feature is designed to enhance the efficiency and effectiveness of your testing workflows, making it an essential tool for any development team using NUnit for their testing needs.
 
 ## Key Features of TigerRoar
+### Data Extraction:
+Extract various kinds of data from DLL, CSV, and XML files for comprehensive testing and reporting. I'm  
 ### Command and Script Execution:
 TigerRoar allows users to run commands and scripts from a user interface or through scheduled tasks. The tool supports various command and script types, including batch, PowerShell, and other scripting languages.
 ### Logging and Result Tracking
@@ -62,4 +64,11 @@ TigerRoar provides an intuitive and easy-to-use interface, enabling users to con
 - **Increased Automation:** Features like automated input and easy integration streamline CI/CD processes, making them smoother and more efficient.
 - **Ease of Use and Deployment:** A user-friendly interface and session management features help users quickly get accustomed to and deploy TigerRoar into their current workflows.
 TigerRoar is an indispensable tool for developers and system administrators, optimizing the command and script execution process while ensuring accuracy and efficiency in every task.
+
+## Anatomy
+
+
+## Future Improvements
+We are continuously working to enhance HiEnds's capabilities. One of our upcoming features includes improving templates to extract and transform data into DataTables from additional sources such as JSON, SQL queries, and API services. This will provide even greater flexibility and utility for comprehensive testing and reporting.
+
 
