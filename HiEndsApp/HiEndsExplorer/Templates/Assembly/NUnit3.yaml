@@ -8,7 +8,9 @@ FilterConditions:
   - TestAttribute
 LoadedAttributes:
 - FullMethodName
+- CategoryAttribute
 Remap:
-  FullMethodName: Case_Name  
+  FullMethodName: Case_Name
+  CategoryAttribute: Category
 AttributeNotExistString: "[[NotExist]]"
 NullValueString: "[[null]]"
