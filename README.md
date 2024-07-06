@@ -33,21 +33,19 @@ https://github.com/sugia279/HiEnds/assets/10128207/a537202e-d098-47a2-988c-d605a
 4. **View Results**: Analyze the test results directly within the tool.
 
 ## Key Features of TigerRoar
+![image](https://github.com/sugia279/HiEnds/assets/10128207/5a041f10-caf5-4420-a7d7-02952f59b3a3)
+
 ### Data Extraction:
 Extract various kinds of data from DLL, CSV, and XML files for comprehensive testing and reporting. 
+- **Template file**:
+  ![image](https://github.com/sugia279/HiEnds/assets/10128207/1cccad0a-f277-4196-b8cb-b36d0e5cd39b)
+
 ### Command and Script Execution:
 TigerRoar allows users to run commands and scripts from a user interface or through scheduled tasks. The tool supports various command and script types, including batch, PowerShell, and other scripting languages.
 ### Logging and Result Tracking
 For every command executed, TigerRoar logs the entire output and result, including the exit code. This helps users easily check and analyze errors that occur during execution.
 ### Automated Input
 TigerRoar supports automated input for commands that require user input. When it detects input prompts, the tool can automatically provide pre-defined values, reducing the need for user intervention and increasing automation.
-### Easy Integration => not done
-The tool is designed for easy integration into existing CI/CD workflows. Users can incorporate TigerRoar as part of their deployment pipeline, ensuring commands and scripts are executed accurately and consistently.
-### Session Management
-TigerRoar supports session management, allowing users to store and retrieve session information from LocalStorage. This helps maintain state and configuration across different sessions, improving continuity and efficiency.
-### User-Friendly Interface
-TigerRoar provides an intuitive and easy-to-use interface, enabling users to configure, execute commands, and track results without requiring extensive technical knowledge.
-
 
 ## Future Improvements
 We are continuously working to enhance HiEnds's capabilities. One of our upcoming features includes improving templates to extract and transform data into DataTables from additional sources such as JSON, SQL queries, and API services. This will provide even greater flexibility and utility for comprehensive testing and reporting.
