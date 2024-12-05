@@ -336,7 +336,7 @@
                                     <!--<TextBlock Text="Active: " DockPanel.Dock="Right" Margin="4,2,0,2"  HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
                                     <CheckBox DockPanel.Dock="Left" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" FlowDirection="LeftToRight" Content="Active"
                                               IsChecked="{Binding SelectedRunCommand.Active, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Button DockPanel.Dock="Right" Width="70" Command="{Binding ShowMoreCommand}" Content="Show More" HorizontalAlignment="Right" Click="Button_Click"/>
+                                <Button DockPanel.Dock="Right" Width="70" Command="{Binding ShowMoreCommand}" Content="Show More" HorizontalAlignment="Right" Click="ShowMore_Click"/>
                                 <Button DockPanel.Dock="Right" Width="50" Command="{Binding DeleteRunnerCommand}" Content="Delete" HorizontalAlignment="Right"/>
                                     <Button DockPanel.Dock="Right" Width="50" Command="{Binding UpRunnerCommand}" Content="Up" HorizontalAlignment="Right"/>
                                     <Button DockPanel.Dock="Right" Width="50" Command="{Binding DownRunnerCommand}" Content="Down" HorizontalAlignment="Right"/>

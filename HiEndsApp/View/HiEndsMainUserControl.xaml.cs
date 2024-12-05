@@ -33,6 +33,8 @@ namespace HiEndsApp.View
         {
             InitializeComponent();
             vm = (DataContext as HiEndsMainUCViewModel);
+            SettingRow.Height = new GridLength(50);
+            MoreSettingRow.Height = new GridLength(0);
         }
 
         private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -124,7 +126,7 @@ namespace HiEndsApp.View
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowMore_Click(object sender, RoutedEventArgs e)
         {
             if (MoreSettingRow.Height.Value == 0)
             {

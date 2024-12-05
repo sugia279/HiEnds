@@ -12,5 +12,5 @@ LoadedAttributes:
 Remap:
   FullMethodName: Case_Name
   CategoryAttribute: Category
-AttributeNotExistString: "[[NotExist]]"
-NullValueString: "[[null]]"
+AttributeNotExistString: "||NotExist||"
+NullValueString: "||null||"
